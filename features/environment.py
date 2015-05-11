@@ -13,7 +13,7 @@ def before_feature(context, feature):
         desired_capabilities={
             'app': app,
             'platformName': 'iOS',
-            'platformVersion': '8.3',
+            'platformVersion': '7.1',
             'deviceName': 'iPhone 6'
         })
 

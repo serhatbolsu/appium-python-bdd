@@ -6,7 +6,10 @@ Feature: showing off behave
     Then behave will test it for us!
 
 
-  Scenario: run appium simple test
-    Given button found
-    When popup does not apper
-    Then should be able to swipe
+  Scenario: Successful Login
+    Given phone and pass info:
+        |  Phone    |   7997991111  |
+        |  Pass     |   456123      |
+
+    When nofitications allowed
+    Then should be able to login
