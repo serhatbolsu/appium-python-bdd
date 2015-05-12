@@ -1,0 +1,6 @@
+.DS_Store
+.pyc
+*.pyc
+*.idea
+*.png
+/features/reports
