@@ -2,8 +2,10 @@ Appium Basic Demo for Behave (BDD)
 ========================================
 
 These are sample test cases for Testhive workshop and general usage that can get you familiar with Appium.
-BDD framework used is Behave which is an Cucumber clone for Python. 
-Mobil Test Automation framework is Appium which is most supported right now.
+
+BDD framework used is Behave which is an Cucumber clone for Python.
+ 
+Mobile Test Automation framework is Appium which is most supported right now.
 
 Install Behave and Appium:
 
