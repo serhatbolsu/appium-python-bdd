@@ -57,5 +57,5 @@ def before_feature(context, feature):
 
 def after_feature(context, feature):
     sleep(1)
-    context.driver.save_screenshot("./screenshot.png")
+    context.driver.save_screenshot("features/reports/screen_final.png")
     context.driver.quit()

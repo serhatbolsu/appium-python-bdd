@@ -4,6 +4,7 @@ Feature: Imdb basic tests
   Scenario: login test for IMDb
     Given user is logged in with correct credientials
     When user clone ad banner
+    Then capture screenshot
     Then menu should be present
     Then user should be able to logout
     Then page should have sign-in button

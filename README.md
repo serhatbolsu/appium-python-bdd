@@ -31,3 +31,11 @@ You may limit the test cases using tags
 behave --tags=current android.feature
 ```
 
+Jenkins Execution:
+```shell
+# Inside the jenkins shell command
+cd {PATH_TO_PROJECT_FOLDER}
+# For Mac
+/Library/Frameworks/Python.framework/Versions/2.7/bin/behave --junit --tags=current features/android.feature
+cp -R reports $WORKSPACE
+```

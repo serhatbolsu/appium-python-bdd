@@ -38,6 +38,11 @@ def step_impl(context):
     context.driver.find_element_by_xpath('//*/android.widget.EditText[2]').send_keys('12345678')
     context.driver.find_element_by_xpath('//*[@text="Sign In"]').click()
 
+@then("capture screenshot")
+def step_impl(context):
+    sleep(1)
+    context.driver.save_screenshot("features/reports/screen_after_login.png")
+
 @then("menu should be present")
 def step_impl(context):
     context.driver.find_element_by_id('android:id/up').click()
@@ -73,7 +78,10 @@ def step_impl(context, movie):
 @step("user clone ad banner")
 def step_impl(context):
     sleep(2)
-    context.driver.find_element_by_id('com.imdb.mobile:id/ad_banner_close_button').click()
+    try:
+        context.driver.find_element_by_id('com.imdb.mobile:id/ad_banner_close_button').click()
+    except:
+        pass
 
 @then('movie: "{movie_result}" should be in the results')
 def step_impl(context,movie_result):
