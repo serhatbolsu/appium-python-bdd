@@ -1,0 +1,34 @@
+<ion-modal-view>
+
+  <ion-header-bar>
+    <h1 class="title">Bütçe Güncelleme</h1>
+    <button class="button button-clear icon ion-close" ng-click="vm.closeBudgetUpdateModal()"></button>
+  </ion-header-bar>
+
+  <ion-content class="padding">
+
+    <form ng-submit="vm.save(vm.budget)" name="budgetForm" novalidate>
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Adı</span>
+          <input type="text" name="budgetName" placeholder="or. Yemek Harcamalarım" autofocus
+              ng-model="vm.budget.name"
+              ng-required="true">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Limiti</span>
+          <input type="number" name="budgetAmount" placeholder="or.1000"
+              ng-model="vm.budget.amount"
+              ng-pattern="/^[0-9]*$/"
+              ng-required="true">
+        </label>
+      </div>
+      <p class="assertive text-center" ng-show="budgetForm.budgetName.$invalid && budgetForm.budgetName.$touched"><b>Bütçe adı</b> girmek zorundasınız.</p>
+      <p class="assertive text-center" ng-show="budgetForm.budgetAmount.$invalid && budgetForm.budgetAmount.$touched"><b>Bütçe limiti</b> girmek zorundasınız.</p>
+      <button type="submit" class="button button-block button-positive" ng-disabled="budgetForm.$invalid">
+        Kaydet
+      </button>
+    </form>
+  </ion-content>
+
+</ion-modal-view>

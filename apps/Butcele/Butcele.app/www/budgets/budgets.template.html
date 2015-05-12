@@ -1,0 +1,33 @@
+<ion-view title="Bütçelerim">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <!--<a ui-sref="new-budget" class="bheadericon bicon-addbudget"></a>-->
+    <span class="bheadericon bicon-addbudget" ng-click="vm.openNewBudgetModal()"></span>
+  </ion-nav-buttons>
+
+  <ion-content class="has-header">
+    <p class="padding no-budget-txt" ng-show="vm.noBudget">Henüz hiç bütçe oluşturmamışsınız.<br/>
+      <span ng-click="vm.openNewBudgetModal()">Şimdi bir Bütçe ekle!</span>
+    </p>
+    <ul class="dashboardList">
+      <a ng-repeat="budget in vm.budgets | orderBy: 'name'" ui-sref="app.show({id: budget.id})">
+      <li>
+        <div class="bowl-container">
+          <div class="sphereMash">
+            <div class="liquid cl-budget-{{ budget.color | colorFilter }}" style="{{'height:' + vm.budgetPercentage(budget) + 'px;'}}"></div>
+            <p class="remainingAmount">
+              {{ vm.budgetRemaining(budget) | number: 0 }} ₺<br/>
+              <span>{{ budget.daysToFinish }} gün</span>
+            </p>
+          </div>
+          <h2>{{ budget.name }}</h2>
+          <p>{{ budget.amount | number: 0 }} ₺ / {{ budget.daysOfBudget }} gün</p>
+        </div>
+      </li>
+      </a>
+    </ul>
+  </ion-content>
+
+</ion-view>

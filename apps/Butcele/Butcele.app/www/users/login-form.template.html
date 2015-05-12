@@ -1,0 +1,23 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Giriş Yapın</h1>
+    <div class="button button-clear" ng-click="vm.hide()">
+      <span class="icon ion-close"></span>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form name="form" ng-submit="vm.submit(params)" novalidate>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Telefon Numarası</span>
+        <input type="number" placeholder="or: 5321112233"  ng-model="params.phoneNumber"
+          ng-minlength="10" ng-maxlength="10" maxlength="10" required />
+      </label>
+
+      <div class="padding">
+        <button type="submit" class="button button-block button-positive" ng-disabled="form.$pristine || form.$invalid">
+          Şifre Gönder
+        </button>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

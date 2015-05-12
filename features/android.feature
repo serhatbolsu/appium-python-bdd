@@ -1,6 +1,6 @@
 @android
 Feature: Imdb basic tests
-
+  @current
   Scenario: login test for IMDb
     Given user is logged in with correct credientials
     When user clone ad banner
@@ -8,7 +8,6 @@ Feature: Imdb basic tests
     Then user should be able to logout
     Then page should have sign-in button
 
-  @current
   Scenario: Share a movie with Email
     When user search for movie: "Matrix"
     And user clone ad banner

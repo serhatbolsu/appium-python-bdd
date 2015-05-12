@@ -1,0 +1,46 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">{{ vm.tag.id ? 'Etiket Düzenle' : 'Yeni Etiket'}}</h1>
+    <div class="button button-clear" ng-click="vm.closeTagModal()">
+      <span class="icon ion-close"></span>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+
+    <form ng-submit="vm.create(vm.tag)" name="tagForm" novalidate>
+
+      <label class="item item-input">
+        <div class="input-label">
+          Etiket Adı:
+        </div>
+        <input type="text" name="tagName" placeholder="ör. İş yemeği"
+               ng-model="vm.tag.name" ng-required="true"/>
+      </label>
+
+      <div class="item item-text-wrap text-center" ng-if="vm.tag.isDefault">
+        <i class="ion-alert-circled"></i> Varsayılan etiketlerde düzenleme yapılamaz.
+      </div>
+
+      <p class="assertive text-center" ng-show="tagForm.tagName.$invalid && tagForm.tagName.$touched"><b>Etiket</b> girmek zorundasınız.</p>
+
+      <div class="row">
+        <div class="col">
+          <button type="submit"
+            class="button button-block button-positive"
+            ng-class="{ disabled: vm.tag.isDefault }"
+            ng-disabled="tagForm.$invalid">
+            Kaydet
+          </button>
+          <button type="button"
+            ng-click="vm.destroy(vm.tag)"
+            class="button button-block button-assertive"
+            ng-if="vm.tag.id"
+            ng-class="{ disabled: vm.tag.isDefault }">
+            Sil
+          </button>
+        </div>
+      </div>
+    </form>
+
+  </ion-content>
+</ion-modal-view>

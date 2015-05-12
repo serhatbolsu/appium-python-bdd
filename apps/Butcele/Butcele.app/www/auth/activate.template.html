@@ -1,0 +1,24 @@
+  <ion-content id="activation-screen">
+
+    <div class="header-container padding">
+      <a class="button button-icon icon ion-chevron-left" ui-sref="login"></a>
+      <img src="assets/img/new-butce-icon.png"/>
+      <h3>Aktivasyon</h3>
+      <p>Gelen Aktivasyon kodu ile Bütçele uygulamasını kullanmaya başlayabilirsiniz.</p>
+    </div>
+
+    <form class="padding" name="activationForm" novalidate
+          ng-submit="vm.submit(params)" ng-init="params.phoneNumber = $root.phoneNumber">
+      <div class="input-container">
+        <input type="tel" placeholder="123456" autofocus
+               ng-model="params.activationCode"
+               ng-required="true"
+               ng-pattern="/^[0-9]*$/"
+               ng-minlength="6"
+               ng-maxlength="6"/>
+        <button type="submit" class="go-circle" ng-disabled="activationForm.$invalid">
+          <i class="icon ion-chevron-right"></i>
+        </button>
+      </div>
+    </form>
+  </ion-content>

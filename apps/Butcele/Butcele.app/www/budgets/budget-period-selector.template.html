@@ -1,0 +1,15 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Geçmiş Dönem Seçin</h1>
+    <div class="button button-clear" ng-click="vm.closeBudgetPeriodSelector()">
+      <span class="icon ion-close"></span>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ul class="list">
+      <li class="item" ng-repeat="budget in vm.relateds">
+        <a ui-sref="app.show({id: budget.id})" ng-click="vm.closeBudgetPeriodSelector()">{{ budget.startDate | date }} - {{ budget.endDate | date }}</a>
+      </li>
+    </ul>
+  </ion-content>
+</ion-modal-view>

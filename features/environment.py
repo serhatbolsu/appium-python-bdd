@@ -1,4 +1,5 @@
 import os
+from time import sleep
 
 from appium import webdriver
 
@@ -20,7 +21,6 @@ def before_feature(context, feature):
                 'platformName' : 'Android',
                 'platformVersion' : '4.4',
                 'deviceName' : None,
-                # 'deviceName' : 'Nexus4',
                 'udid' : '01a135891395669f',
                 'appActivity' : '.HomeActivity',
                 'appPackage' : 'com.imdb.mobile'
@@ -38,12 +38,13 @@ def before_feature(context, feature):
                 'platformName': 'iOS',
                 'platformVersion': '8.3',
                 # 'udid' : '03ecba20f42e7fef25632d9b30cd0c8a5b447e92',
+                # 'deviceName' : None
                 'deviceName': "iPhone 6" # Force device to run on simulator such as : iPhone 6
             })
     elif 'ios' in feature.tags and 'butcele' in feature.tags:
         app = os.path.join(os.path.dirname(__file__),
                            '../apps/Butcele',
-                           'Butcele.app')
+                           'butcele.app')
         app = os.path.abspath(app)
         context.driver = webdriver.Remote(
             command_executor='http://127.0.0.1:4723/wd/hub',
@@ -55,5 +56,6 @@ def before_feature(context, feature):
             })
 
 def after_feature(context, feature):
+    sleep(1)
     context.driver.save_screenshot("./screenshot.png")
     context.driver.quit()

@@ -1,0 +1,69 @@
+<ion-modal-view id="new-budget-form">
+  <ion-content>
+    <div class="header-container padding">
+      <i class="icon ion-close-round" ng-click="vm.closeNewBudgetModal()"></i>
+
+      <img ng-show="vm.newBudgetStep1" src="assets/img/new-butce-icon.png"/>
+      <img ng-show="vm.newBudgetStep2" src="assets/img/new-limit-icon.png"/>
+      <img ng-show="vm.newBudgetStep3" src="assets/img/new-time-icon.png"/>
+
+      <h3 ng-show="vm.newBudgetStep1">Bütçe Adı</h3>
+      <h3 ng-show="vm.newBudgetStep2">Limit</h3>
+      <h3 ng-show="vm.newBudgetStep3">Dönem</h3>
+
+      <p ng-show="vm.newBudgetStep1">Takip etmek istediğiniz harcamalarınızı belirleyerek Bütçele'yi kullanmaya başlayabilirsiniz. Ne için çok harcıyorsunuz?<br/>İlk olarak Bütçenize bir isim verin.</p>
+      <p ng-show="vm.newBudgetStep2">Bütçenizin limiti ne olsun?<br/>Sınırınızı belirleyin, buna göre bütçenizi<br/>takip edin.</p>
+      <p ng-show="vm.newBudgetStep3">Harcama bütçenizi ne kadar zaman takip etmek istiyorsunuz?<br/>Aylık bütçe yapabilir veya istediğiniz tarihleri seçebilirsiniz.</p>
+    </div>
+
+    <form class="padding" name="budgetFormS1" novalidate
+          ng-show="vm.newBudgetStep1" ng-submit="vm.gotoStep2()">
+      <div class="input-container">
+        <input type="text" name="budgetName" placeholder="Bütçe Adı" autocorrect="off" autocomplete="off"
+               ng-model="vm.budget.name"
+               ng-required="true"/>
+        <button type="submit" class="go-circle" ng-disabled="budgetFormS1.$invalid">
+          <i class="icon ion-chevron-right"></i>
+        </button>
+      </div>
+    </form>
+
+    <form class="padding" name="budgetFormS2" novalidate
+          ng-show="vm.newBudgetStep2" ng-submit="vm.gotoStep3()">
+      <div class="input-container">
+        <input type="number" name="budgetAmount" placeholder="ör. 1000₺" autocomplete="false"
+              pattern="\d*"
+              ng-model="vm.budget.amount"
+              ng-pattern="/^[0-9]*$/"
+              ng-required="true">
+
+        <button type="submit" class="go-circle" ng-disabled="budgetFormS2.$invalid">
+          <i class="icon ion-chevron-right"></i>
+        </button>
+      </div>
+    </form>
+
+    <form class="padding" name="budgetFormS3" novalidate
+          ng-show="vm.newBudgetStep3" ng-submit="vm.saveNewBudget(vm.budget)">
+
+      <div class="button-container">
+        <div ng-click="vm.selectTimePeriod(0)" class="timeBtn" ng-class="{ 'is-active' : vm.budget.isMonthly }">Aylık</div>
+        <div ng-click="vm.selectTimePeriod()" class="timeBtn" ng-class="{ 'is-active' : !vm.budget.isMonthly }">Özel</div>
+      </div>
+
+      <div class="customDates" ng-show="!vm.budget.isMonthly">
+        <input type="date" ng-model="vm.budget.startDate" placeholder="Baslangic tarihi"/>
+        <input type="date" ng-model="vm.budget.endDate" placeholder="Bitis tarihi"/>
+      </div>
+
+      <label class="repeatAgree" for="repeatAgree">
+        <input type="checkbox" id="repeatAgree" ng-model="vm.budget.isRepeating"/> Dönem bittiğinde bütçeyi tekrarla.
+      </label>
+
+      <button type="submit" class="saveForm" ng-disabled="budgetFormS3.$invalid">
+        Kaydet
+      </button>
+    </form>
+
+  </ion-content>
+</ion-modal-view>

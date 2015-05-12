@@ -1,0 +1,18 @@
+<ion-view id="new-budget-form">
+  <ion-content>
+    <div class="header-container padding">
+      <i class="icon ion-close-round" ng-click="vm.closeNewBudgetForm()"></i>
+      <img src="assets/img/new-butce-icon.png"/>
+      <h3>Bütçe Adı</h3>
+      <p>Takip etmek istediğiniz harcamalarınızı belirleyerek Bütçele'yi kullanmaya başlayabilirsiniz. Ne için çok harcıyorsunuz?<br/>İlk olarak bütçenize bir isim verin.</p>
+    </div>
+    <form class="padding" ng-submit="vm.saveName(vm.budget)" name="budgetForm" novalidate>
+      <input type="text" name="budgetName" placeholder="Bütçe Adı"
+             ng-model="vm.budget.name"
+             ng-required="true"/>
+      <button type="submit" class="go-circle" ng-disabled="budgetForm.$invalid">
+        <i class="icon ion-chevron-right"></i>
+      </button>
+    </form>
+  </ion-content>
+</ion-view>

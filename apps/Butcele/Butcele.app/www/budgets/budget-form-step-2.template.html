@@ -1,0 +1,20 @@
+<ion-view id="new-budget-form">
+  <ion-content>
+    <div class="header-container padding">
+      <i class="icon ion-close-round" ng-click="vm.closeNewBudgetForm()"></i>
+      <img src="assets/img/new-limit-icon.png"/>
+      <h3>Limit</h3>
+      <p>Bütçenizin limiti ne olsun?<br/>Sınırınızı belirleyin, buna göre bütçenizi<br/>takip edin.</p>
+    </div>
+    <form class="padding" ng-submit="vm.saveLimit(vm.budget)" name="budgetForm" novalidate>
+      <input type="number" name="budgetAmount" placeholder="ör. 1000₺"
+             ng-model="vm.budget.amount"
+             ng-pattern="/^[0-9]*$/"
+             ng-required="true">
+
+      <button type="submit" class="go-circle" ng-disabled="budgetForm.$invalid">
+        <i class="icon ion-chevron-right"></i>
+      </button>
+    </form>
+  </ion-content>
+</ion-view>

@@ -5,18 +5,6 @@ from appium import webdriver
 """    BDD         """
 """    BUTCELE     """
 
-@given('we have behave installed')
-def step_impl(context):
-    pass
-
-@when('we implement a test')
-def step_impl(context):
-    assert True is not False
-
-@then('behave will test it for us!')
-def step_impl(context):
-    assert context.failed is False
-
 #context.driver  =webdriver.Remote()
 
 
@@ -35,7 +23,7 @@ def pass_info(context):
 def notification_pass(context):
 
     x_path = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/"
-
+    sleep(5)
     Notify = context.driver.find_element_by_xpath('//UIAApplication[1]/UIAWindow[6]/UIAAlert[1]/UIACollectionView[1]/UIACollectionCell[2]')
     Notify.click()
     sleep(1)
