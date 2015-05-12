@@ -1,4 +1,4 @@
-Appium Basic Test Cases for Behave (BDD)
+Appium Basic Demo for Behave (BDD)
 ========================================
 
 These are sample test cases for Testhive workshop and general usage that can get you familiar with Appium.
@@ -12,7 +12,8 @@ pip install appium-python-client
 pip install behave
 
 # For SauceLabs remote connection
-# !! Make sure your environment variables have: SAUCE_USERNAME and SAUCE_ACCESS_KEY variables set
+# !! Make sure your environment variables have: SAUCE_USERNAME
+# and SAUCE_ACCESS_KEY variables set
 pip install sauceclient
 ```
 
@@ -20,6 +21,11 @@ Usage:
 
 ```shell
 # In order to select configuration you need to set tags in execution
-behave --tags=ios ios_simple.feature
+behave ios_simple.feature
+```
+
+You may limit the test cases using tags
+```shell
+behave --tags=current android.feature
 ```
 

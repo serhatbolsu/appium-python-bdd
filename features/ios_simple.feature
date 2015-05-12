@@ -2,7 +2,6 @@
 @simple
 Feature: iOS Simple Tests for Swipe
 
-  @ios
   Scenario: run simple ios test
     Given button found
     When popup does not appear

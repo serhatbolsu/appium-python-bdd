@@ -1,6 +1,7 @@
 @ios
 @butcele
 Feature: Butcele test cases
+
   Scenario: Successful Login
     Given phone and pass info:
         |  Phone    |   7997991111  |
