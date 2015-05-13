@@ -58,7 +58,10 @@ def step_impl(context):
 
 @then("page should have sign-in button")
 def step_impl(context):
-    context.driver.find_element_by_id('android:id/up').click()
+    try:
+        context.driver.find_element_by_id('android:id/up').click()
+    except:
+        pass
     elem = context.driver.find_element_by_xpath('//*[@text="Sign In"]')
     # print elem.is_displayed()
     assert elem.is_displayed() is True

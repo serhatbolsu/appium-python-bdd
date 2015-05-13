@@ -12,7 +12,7 @@ class SimpleIOSTests(unittest.TestCase):
     def setUp(self):
         # set up appium
         app = os.path.join(os.path.dirname(__file__),
-                           'apps/TestApp/build/Release-iphonesimulator',
+                           '../../apps/TestApp/build/Release-iphone',
                            'TestApp.app')
         app = os.path.abspath(app)
         self.driver = webdriver.Remote(
@@ -22,6 +22,8 @@ class SimpleIOSTests(unittest.TestCase):
                 'platformName': 'iOS',
                 'platformVersion': '8.3',
                 'deviceName': 'iPhone 6'
+                # 'deviceName' : None,
+                # 'udid' : '03ecba20f42e7fef25632d9b30cd0c8a5b447e92'
             })
 
     def tearDown(self):

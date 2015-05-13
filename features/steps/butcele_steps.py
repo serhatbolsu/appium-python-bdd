@@ -16,10 +16,14 @@ x_path = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/"
 
 @given('phone and pin info "{phone}" "{pin}"')
 def login_section(context, phone, pin):
-
-    Notify = context.driver.find_element_by_xpath('//UIAApplication[1]/UIAWindow[6]/UIAAlert[1]/UIACollectionView[1]/UIACollectionCell[2]')
-    Notify.click()
-    sleep(1)
+    sleep(3)
+    try:
+        Notify = context.driver.find_element_by_xpath('//UIAApplication[1]/UIAWindow[6]/UIAAlert[1]/UIACollectionView[1]/UIACollectionCell[2]')
+        Notify.click()
+    except:
+        pass
+    finally:
+        sleep(1)
 
     """ enter phone number """
     t_phone = context.driver.find_element_by_xpath(x_path+'UIATextField[1]')
@@ -62,7 +66,7 @@ def bugdet_section(context, b_name, budget):
     sleep(1)
 
     """ enters expense menu """
-    context.driver.tap([(259, 503)], 1)
+    context.driver.tap([(314, 602)], 1)
     sleep(1)
 
 
