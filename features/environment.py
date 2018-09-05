@@ -5,7 +5,7 @@ from appium import webdriver
 
 
 def before_all(context):
-    # context.config.setup_logging()
+    context.config.setup_logging()
     pass
 
 def before_feature(context, feature):
@@ -19,9 +19,9 @@ def before_feature(context, feature):
             desired_capabilities={
                 'app' : app,
                 'platformName' : 'Android',
-                'platformVersion' : '4.4',
-                'deviceName' : None,
-                'udid' : '01a135891395669f',
+                'platformVersion' : '5.0',
+                'deviceName' : 'Samsang',
+                'udid' : '001a88ae3fec9f',
                 'appActivity' : '.HomeActivity',
                 'appPackage' : 'com.imdb.mobile'
             }

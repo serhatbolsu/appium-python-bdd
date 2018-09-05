@@ -32,11 +32,17 @@ def swipe_should(context):
 def step_impl(context):
     sleep(5)
     context.driver.find_element_by_xpath('//*[@text="Sign In"]').click()
-    sleep(2)
-    context.driver.find_element_by_xpath('//*[@text="IMDb"]').click()
-    context.driver.find_element_by_xpath('//*[@text="Email"]').send_keys('devicelab@qualifylabs.com')
-    context.driver.find_element_by_xpath('//*/android.widget.EditText[2]').send_keys('12345678')
-    context.driver.find_element_by_xpath('//*[@text="Sign In"]').click()
+    sleep(5)
+    context.driver.find_element_by_xpath('//*[@text="Google"]').click()
+    sleep(5)
+    context.driver.find_element_by_xpath('//*[@text="xolanimxoxozi@gmail.com"]').click()
+    sleep(5)
+    context.driver.find_element_by_xpath('//*[@text="OK"]').click()
+    sleep(5)
+    context.driver.find_element_by_xpath('//*[@text="ALLOW"]').click()
+    # context.driver.find_element_by_xpath('//*[@text="Email address"]').send_keys('xolanimxoxozi@gmail.com')
+    # context.driver.find_element_by_xpath('//*/android.widget.EditText[2]').send_keys('xolani1991')
+    # context.driver.find_element_by_xpath('//*[@text="Sign In"]').click()
 
 @then("capture screenshot")
 def step_impl(context):
