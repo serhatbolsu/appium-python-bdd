@@ -1,5 +1,5 @@
 # appium-python-bdd
-BDD test examples with Behave and Appium
+BDD tes with Behave and Appium
 
 
 To Run Android app
