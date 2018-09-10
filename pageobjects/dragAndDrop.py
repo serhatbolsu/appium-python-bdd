@@ -15,9 +15,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+
+from random import randint
+
 from toolium.pageobjects.page_object import PageObject
 from selenium.common.exceptions import NoSuchElementException
 
+from selenium.webdriver.common.by import By
 from toolium.pageelements import *
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
@@ -28,36 +32,36 @@ from selenium.common.exceptions import WebDriverException
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from toolium.pageelements import InputText, Button
+from selenium.webdriver.support.ui import WebDriverWait as wait
+from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.remote.command import Command
 
 import random
 import string
 import time
 
-from selenium.webdriver.common.by import By
-from behave import given, when, then
-from android_behave.pageobjects.menu import MenuPageObject
-from android_behave.pageobjects.tabs import TabsPageObject
+import inspect
 
 
-@given('the menu is open')
-def step_impl(context):
-    context.current_page = MenuPageObject()
+class TabsPageObject(PageObject):
 
-@when('the user goes to Alarm Services')
-def step_impl(context):
-    context.current_page.open_option('App').open_option('Alarm').open_option('Alarm Service')
-    context.current_page = TabsPageObject()
+	def init_page_elements(self):
+	    tab_xpath = '(//android.widget.TabWidget//android.widget.TextView)[{}]'
+	    tab1 = Button(By.XPATH, tab_xpath.format('1'))
+	    tab2 = Button(By.XPATH, tab_xpath.format('2'))
+	    tab3 = Button(By.XPATH, tab_xpath.format('3'))
+	    content1 = Text(By.ID, 'io.appium.android.apis:id/view1')
+	    content2 = Text(By.ID, 'io.appium.android.apis:id/view2')
+	    content3 = Text(By.ID, 'io.appium.android.apis:id/view3')
+	    container = PageElement(By.ID, 'android:id/content')
 
-@when('the user starts the alarm service')
-def step_impl(context):
-    context.current_page = TabsPageObject()
-    context.current_page.startAlarm()
+	def viewsTab(self):
+		self.driver.find_element_by_xpath('//*[@text="OS"]').click()
+		time.sleep(5)
 
-@when('the user stops the alarm service')
-def step_impl(context):
-    context.current_page = TabsPageObject()
-    context.current_page.stopAlarm()
-
-@then('the second tab contains "{message}"')
-def step_impl(context, message):
-    assert message in context.current_page.content2.text
+	def drag_element(self):
+		self.driver.find_element_by_xpath('//*[@text="Drag and Drop"]').click()
+		time.sleep(3)

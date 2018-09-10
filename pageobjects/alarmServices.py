@@ -49,14 +49,6 @@ class TabsPageObject(PageObject):
 	    content3 = Text(By.ID, 'io.appium.android.apis:id/view3')
 	    container = PageElement(By.ID, 'android:id/content')
 
-        # self.sync.set_web_driver_wait(self.driver,int(self.config.get('Test','wait')),self.logger)
-        # self.action_option = PageElement(By.XPATH, "//*[contains(@class,'sc-view alta-drop-down-menu arrow menu-caret action-menu')]")
-        # self.cofiged_email = PageElement(By.XPATH, "//*[contains(@class,'sc-view recently-accessed-item sc-collection-item')]")
-
-        # self.batch_button = PageElement(By.XPATH, "//*[contains(@class,'sc-view sc-menu-item menu-name-A_BATCH_SEND')]")
-        # self.Multi_Step = PageElement(By.XPATH, "//*[contains(@class,'sc-view sc-menu-item menu-name-A_BATCH_SEND_MULTI_STEP_CAMPAIGN')]")
-
-
     def startAlarm(self):
 		self.driver.find_element_by_xpath('//*[@text="Start Alarm Service"]').click()
 		time.sleep(5)
@@ -64,3 +56,8 @@ class TabsPageObject(PageObject):
     def stopAlarm(self):
 		self.driver.find_element_by_xpath('//*[@text="Stop Alarm Service"]').click()
 		time.sleep(3)
+ 		self.driver.back()
+		time.sleep(3)
+ 		self.driver.back()
+		time.sleep(3)
+ 		self.driver.back()
