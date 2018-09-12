@@ -18,6 +18,11 @@ limitations under the License.
 
 from random import randint
 
+# from pageobjects.synchronization import Synchronization
+# from android_behave.pageobjects.synchronization import Synchronization
+from android_behave.pageobjects.synchronization import Synchronization
+
+
 from toolium.pageobjects.page_object import PageObject
 from selenium.common.exceptions import NoSuchElementException
 
@@ -48,20 +53,127 @@ import inspect
 
 class TabsPageObject(PageObject):
 
+	sync = Synchronization.get()
+
 	def init_page_elements(self):
-	    tab_xpath = '(//android.widget.TabWidget//android.widget.TextView)[{}]'
-	    tab1 = Button(By.XPATH, tab_xpath.format('1'))
-	    tab2 = Button(By.XPATH, tab_xpath.format('2'))
-	    tab3 = Button(By.XPATH, tab_xpath.format('3'))
-	    content1 = Text(By.ID, 'io.appium.android.apis:id/view1')
-	    content2 = Text(By.ID, 'io.appium.android.apis:id/view2')
-	    content3 = Text(By.ID, 'io.appium.android.apis:id/view3')
-	    container = PageElement(By.ID, 'android:id/content')
+	    self.viewsButton = self.driver.find_element_by_xpath('//*[@text="Views"]')
+
+
+	# def viewsTab(self):
+	# 	#scroll to bottom
+	# 	self.driver.swipe(0, 0, 20, 40, 100)
+	# 	self.driver.swipe(start_x, start_y, end_x, end_y, duration)
+	# 	# self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+	# 	time.sleep(5)
+
+	# 	#Click Views button
+	# 	# self.driver.find_element_by_xpath('//*[@text="Views"]').click()
+	# 	time.sleep(5)
 
 	def viewsTab(self):
-		self.driver.find_element_by_xpath('//*[@text="OS"]').click()
-		time.sleep(5)
+		try:
+
+			self.logger.info("\n===============================Views Button=========================================")
+			self.logger.debug("\n-----------------------------------------------------------------------------------")
+			self.logger.debug("Atempting to click the Views button ")
+			self.logger.debug("Checking if the button is present : %s",self.viewsButton)
+			self.logger.debug("Clicking Views : %s",self.viewsButton)
+			self.logger.debug("\n-----------------------------------------------------------------------------------")
+
+			self.sync_element(self.viewsButton)
+			self.viewsButton.click()
+
+			return True
+		except NoSuchElementException:
+			self.logger.debug("error", "Element {} does not exist".format(self.viewsButton))
+			return None		
 
 	def drag_element(self):
-		self.driver.find_element_by_xpath('//*[@text="Drag and Drop"]').click()
-		time.sleep(3)
+		try:
+			self.logger.info("\n===============================Drag and Drop Button=================================")
+			self.logger.debug("\n-----------------------------------------------------------------------------------")
+			self.logger.debug("Atempting to click the Drag and Drop button ")
+			self.logger.debug("Checking if the button is present : Drag and Drop")
+			self.logger.debug("Clicking Drag and Drop : Drag and Drop")
+			self.logger.debug("\n-----------------------------------------------------------------------------------")
+			time.sleep(3)
+
+			self.driver.find_element_by_xpath('//*[@text="Drag and Drop"]').click()
+			time.sleep(3)
+
+			return True
+		except NoSuchElementException:
+			self.logger.debug("error", "Element {} does not exist: Drag and Drop")
+			return None				
+
+
+	def click_element(self, element = None):
+		try:
+			if (element == None):
+				errorMsg = "Neither element or elementName can be None: element = {}; elementName = {}".format(str(element), elementName)
+				self.auto_log("error", errorMsg)
+				raise WebDriverException(errorMsg)
+				return None
+			else:
+				self.auto_log("debug", "Clicking the " + str(element))
+				# element.wait_until_visible(int(self.config.get('Test', 'wait')))
+				# element.wait_until_clickable(int(self.config.get('Test', 'wait')))
+
+				elementType = type(element)
+				if "PageElement" in str(elementType):
+
+					element.web_element.click()
+				else:
+
+					element.click()
+					return self
+		except NoSuchElementException:
+			self.auto_log("error", "Element {} does not exist".format(element))
+			return None
+		except TimeoutException:
+			self.auto_log("error", "Element {} not come into existence within {} seconds".format(element, int(self.config.get('Test', 'wait'))))
+			return None
+
+	def sync_element(self,element):
+		try:
+			if (element == None):
+				errorMsg = "Neither element or elementName can be None: element = {}; elementName = {}".format(str(element), str(element))
+				self.auto_log("error", errorMsg)
+				raise WebDriverException(errorMsg)
+				return None
+			else:
+				# element.wait_until_visible(int(self.config.get('Test', 'wait')))
+				return self
+		except NoSuchElementException:
+			self.auto_log("error", "Element {} does not exist".format(element))
+			return None
+		except TimeoutException:
+			self.auto_log("error", "Element {} not come into existence within {} seconds".format(element, int(self.config.get('Test', 'wait'))))
+			return None
+
+	def auto_log(self, level, message):
+		func = inspect.currentframe().f_back.f_code
+		if level.lower() == "debug":
+			self.logger.debug("%s: %s in %s:%i" % (
+				message, 
+				func.co_name, 
+				func.co_filename, 
+				func.co_firstlineno
+			))
+
+		if level.lower() == "error":
+			self.logger.error("%s: %s in %s:%i" % (
+				message, 
+				func.co_name, 
+				func.co_filename, 
+				func.co_firstlineno
+			))
+
+		if level.lower() == "info":
+			self.logger.info("%s: %s in %s:%i" % (
+				message, 
+				func.co_name, 
+				func.co_filename, 
+				func.co_firstlineno
+			))
+

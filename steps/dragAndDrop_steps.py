@@ -43,11 +43,6 @@ from android_behave.pageobjects.dragAndDrop import TabsPageObject
 def step_impl(context):
     context.current_page = MenuPageObject()
 
-# @when('the user goes to Alarm Services')
-# def step_impl(context):
-#     context.current_page.open_option('App').open_option('Alarm').open_option('Alarm Service')
-#     context.current_page = TabsPageObject()
-
 @when('the user opens Views tab')
 def step_impl(context):
     context.current_page = TabsPageObject()
@@ -58,6 +53,3 @@ def step_impl(context):
     context.current_page = TabsPageObject()
     context.current_page.drag_element()
 
-# @then('the second tab contains "{message}"')
-# def step_impl(context, message):
-#     assert message in context.current_page.content2.text
