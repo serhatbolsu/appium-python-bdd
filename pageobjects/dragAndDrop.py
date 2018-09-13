@@ -22,6 +22,7 @@ from random import randint
 # from android_behave.pageobjects.synchronization import Synchronization
 from android_behave.pageobjects.synchronization import Synchronization
 
+from appium.webdriver.common.touch_action import TouchAction
 
 from toolium.pageobjects.page_object import PageObject
 from selenium.common.exceptions import NoSuchElementException
@@ -56,20 +57,8 @@ class TabsPageObject(PageObject):
 	sync = Synchronization.get()
 
 	def init_page_elements(self):
-	    self.viewsButton = self.driver.find_element_by_xpath('//*[@text="Views"]')
-
-
-	# def viewsTab(self):
-	# 	#scroll to bottom
-	# 	self.driver.swipe(0, 0, 20, 40, 100)
-	# 	self.driver.swipe(start_x, start_y, end_x, end_y, duration)
-	# 	# self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-	# 	time.sleep(5)
-
-	# 	#Click Views button
-	# 	# self.driver.find_element_by_xpath('//*[@text="Views"]').click()
-	# 	time.sleep(5)
-
+	    self.viewsButton = self.driver.find_element_by_xpath('//*[@text="App"]')
+	
 	def viewsTab(self):
 		try:
 
@@ -80,9 +69,14 @@ class TabsPageObject(PageObject):
 			self.logger.debug("Clicking Views : %s",self.viewsButton)
 			self.logger.debug("\n-----------------------------------------------------------------------------------")
 
-			self.sync_element(self.viewsButton)
-			self.viewsButton.click()
+			actions = TouchAction(self.driver)
+			actions.scroll_from_element(element, 10, 100)
+			actions.scroll(10, 100)
+			actions.perform()
 
+			# self.sync_element(self.viewsButton)
+			# self.viewsButton.click()
+			self.driver.find_element_by_xpath('//*[@text="Views"]').click()
 			return True
 		except NoSuchElementException:
 			self.logger.debug("error", "Element {} does not exist".format(self.viewsButton))
