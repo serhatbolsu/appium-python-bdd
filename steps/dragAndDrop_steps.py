@@ -48,8 +48,12 @@ def step_impl(context):
     context.current_page = TabsPageObject()
     context.current_page.viewsTab()
 
-@when('the user clicks on drag and drop')
+@then('the user clicks on drag and drop button')
 def step_impl(context):
     context.current_page = TabsPageObject()
     context.current_page.drag_element()
 
+@given('the user drags and drops the bubble')
+def step_impl(context):
+    context.current_page = TabsPageObject()
+    context.current_page.drag_element()

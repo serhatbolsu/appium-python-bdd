@@ -69,13 +69,10 @@ class TabsPageObject(PageObject):
 			self.logger.debug("Clicking Views : %s",self.viewsButton)
 			self.logger.debug("\n-----------------------------------------------------------------------------------")
 
-			actions = TouchAction(self.driver)
-			actions.scroll_from_element(element, 10, 100)
-			actions.scroll(10, 100)
-			actions.perform()
-
-			# self.sync_element(self.viewsButton)
-			# self.viewsButton.click()
+			self.logger.debug("Scrolling Views into view.")
+			self.driver.swipe(100, 500, 100, 100, 200)
+			# self.driver.swipe(start_x, start_y, end_x, end_y, duration)
+			time.sleep(3)
 			self.driver.find_element_by_xpath('//*[@text="Views"]').click()
 			return True
 		except NoSuchElementException:
