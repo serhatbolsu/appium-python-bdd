@@ -8,4 +8,3 @@ Feature: Alarm Services
 	 And the user stops the alarm service
 
     #Then the user clicks back button
-

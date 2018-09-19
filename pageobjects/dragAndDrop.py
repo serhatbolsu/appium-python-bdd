@@ -55,28 +55,23 @@ import inspect
 class TabsPageObject(PageObject):
 
 	sync = Synchronization.get()
-
-	def init_page_elements(self):
-	    self.viewsButton = self.driver.find_element_by_xpath('//*[@text="App"]')
 	
 	def viewsTab(self):
 		try:
-
 			self.logger.info("\n===============================Views Button=========================================")
 			self.logger.debug("\n-----------------------------------------------------------------------------------")
 			self.logger.debug("Atempting to click the Views button ")
-			self.logger.debug("Checking if the button is present : %s",self.viewsButton)
-			self.logger.debug("Clicking Views : %s",self.viewsButton)
+			self.logger.debug("Checking if the button is present : viewsButton")
+			self.logger.debug("Clicking Views : viewsButton")
 			self.logger.debug("\n-----------------------------------------------------------------------------------")
 
 			self.logger.debug("Scrolling Views into view.")
-			self.driver.swipe(100, 500, 100, 100, 200)
-			# self.driver.swipe(start_x, start_y, end_x, end_y, duration)
+
 			time.sleep(3)
 			self.driver.find_element_by_xpath('//*[@text="Views"]').click()
 			return True
 		except NoSuchElementException:
-			self.logger.debug("error", "Element {} does not exist".format(self.viewsButton))
+			self.logger.debug("error", "Element {} does not exist")
 			return None		
 
 	def drag_element(self):
@@ -87,7 +82,7 @@ class TabsPageObject(PageObject):
 			self.logger.debug("Checking if the button is present : Drag and Drop")
 			self.logger.debug("Clicking Drag and Drop : Drag and Drop")
 			self.logger.debug("\n-----------------------------------------------------------------------------------")
-			time.sleep(3)
+			time.sleep(5)
 
 			self.driver.find_element_by_xpath('//*[@text="Drag and Drop"]').click()
 			time.sleep(3)
@@ -96,7 +91,6 @@ class TabsPageObject(PageObject):
 		except NoSuchElementException:
 			self.logger.debug("error", "Element {} does not exist: Drag and Drop")
 			return None				
-
 
 	def click_element(self, element = None):
 		try:
@@ -167,4 +161,3 @@ class TabsPageObject(PageObject):
 				func.co_filename, 
 				func.co_firstlineno
 			))
-
