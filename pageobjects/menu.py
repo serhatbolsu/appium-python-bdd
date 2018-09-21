@@ -19,23 +19,24 @@ from toolium.pageobjects.page_object import PageObject
 from selenium.common.exceptions import NoSuchElementException
 
 from toolium.pageelements import *
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
+from appium.webdriver.common.mobileby import MobileBy
+from selenium.webdriver.support import expected_conditions as EC
 import selenium.webdriver.support.expected_conditions as WAITCON
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
 from toolium.pageelements import InputText, Button
+from selenium.webdriver.support.ui import WebDriverWait
 
 import random
 import string
 import time
 
-from selenium.webdriver.common.by import By
-from appium.webdriver.common.mobileby import MobileBy
-from toolium.pageobjects.page_object import PageObject
+
 
 
 class MenuPageObject(PageObject):
@@ -50,3 +51,4 @@ class MenuPageObject(PageObject):
         """
         self.driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, self.option_locator.format(option)).click()
         return self
+

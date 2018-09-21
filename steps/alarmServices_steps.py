@@ -36,7 +36,7 @@ import time
 from selenium.webdriver.common.by import By
 from behave import given, when, then
 from android_behave.pageobjects.menu import MenuPageObject
-from android_behave.pageobjects.tabs import TabsPageObject
+from android_behave.pageobjects.alarmServices import TabsPageObject
 
 
 @given('the menu is open')
