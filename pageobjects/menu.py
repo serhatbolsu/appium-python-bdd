@@ -49,6 +49,6 @@ class MenuPageObject(PageObject):
         :param option: str with menu option
         :returns: this page object instance
         """
-        self.driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, self.option_locator.format(option))
+        self.driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, self.option_locator.format(option)).click()
         return self
 

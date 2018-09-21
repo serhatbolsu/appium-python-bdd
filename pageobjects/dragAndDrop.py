@@ -45,6 +45,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.remote.command import Command
 
+from actions import action, Action, Actions
+
 import random
 import string
 import time
@@ -70,11 +72,12 @@ class TabsPageObject(PageObject):
 			time.sleep(3)
 			self.driver.find_element_by_xpath('//*[@text="Views"]').click()
 			return True
+
 		except NoSuchElementException:
 			self.logger.debug("error", "Element {} does not exist")
 			return None		
 
-	def drag_element(self):
+	def viewsDragAndDrop(self):
 		try:
 			self.logger.info("\n===============================Drag and Drop Button=================================")
 			self.logger.debug("\n-----------------------------------------------------------------------------------")
@@ -85,12 +88,34 @@ class TabsPageObject(PageObject):
 			time.sleep(5)
 
 			self.driver.find_element_by_xpath('//*[@text="Drag and Drop"]').click()
-			time.sleep(3)
-
+			time.sleep(5)
 			return True
+
 		except NoSuchElementException:
 			self.logger.debug("error", "Element {} does not exist: Drag and Drop")
 			return None				
+
+	def dragAndDropElement(self):
+		try:
+			self.logger.info("\n===============================Drag and Drop Button=================================")
+			self.logger.debug("\n-----------------------------------------------------------------------------------")
+			self.logger.debug("Atempting to Drag and Drop bubble ")
+			self.logger.debug("Checking if the bubble is present : Drag and Drop")
+			self.logger.debug("Drag and Drop : Dragging bubble")
+			self.logger.debug("\n-----------------------------------------------------------------------------------")
+			time.sleep(5)
+
+			self.actions = TouchAction(self.driver)
+
+			self.dragabble = self.driver.find_element_by_id("io.appium.android.apis:id/drag_dot_1")
+			self.droppabble = self.driver.find_element_by_id("io.appium.android.apis:id/drag_dot_2")
+
+			self.actions.long_press(self.dragabble).move_to(self.droppabble).release().perform()
+			return True
+
+		except NoSuchElementException:
+			self.logger.debug("error", "Element {} does not exist: droppable bubble")
+			return None	
 
 	def click_element(self, element = None):
 		try:

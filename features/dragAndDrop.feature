@@ -6,5 +6,5 @@ Feature: Drag and drop
      When the user opens Views tab
      Then the user clicks on drag and drop button
 
-   # Given the user drags and drops the bubble
+  Given the user drags and drops the bubble
 

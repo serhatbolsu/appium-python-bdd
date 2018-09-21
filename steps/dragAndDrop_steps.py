@@ -53,9 +53,9 @@ def step_impl(context):
 def step_impl(context):
 	# context.current_page.open_option('Drag and Drop')
 	context.current_page = TabsPageObject()
-	context.current_page.drag_element()
+	context.current_page.viewsDragAndDrop()
 
 @given('the user drags and drops the bubble')
 def step_impl(context):
     context.current_page = TabsPageObject()
-    context.current_page.drag_element()
+    context.current_page.dragAndDropElement()
