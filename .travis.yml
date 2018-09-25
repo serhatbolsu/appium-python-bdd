@@ -1,2 +1,18 @@
+# language: python
+# script: "echo foo"
+
 language: python
-script: "echo foo"
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+env:
+  - NUMPY_VERSION=1.12.1
+  - NUMPY_VERSION=1.13.1
+# command to install dependencies, requirements.txt should NOT include numpy
+install:
+  - pip install -r requirements.txt numpy==$NUMPY_VERSION
+# command to run tests
+script:
+  - pytest # or py.test for Python versions 3.5 and below
