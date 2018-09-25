@@ -1,13 +1,17 @@
 language: python
-python:
-  - 2.6
-  - 2.7
-  - pypy
+python: '3.5'
+sudo: false
+
+before_install:
+  - python --version
 
 install:
+  - virtualenv --version
+  - easy_install --version
+  - pip --version
   - pip install --use-mirrors -q mock nose PyHamcrest
   - python setup.py -q install
+  
 script:
-  - python --version
-  - behave --tags=dragAndDrop
-  - behave --tags=StartAlarm
+  - behave android_behave --tags=dragAndDrop
+  - behave android_behave --tags=StartAlarm
