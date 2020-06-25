@@ -1,0 +1,59 @@
+language: python
+sudo: required
+python:
+  - "3.6"
+  - "2.7"
+  - "3.5"
+  - "pypy"
+  - "pypy3"
+  - "3.7-dev"
+
+include:
+  - os: linux
+    node_js: '7'
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3
+  - fluxbox >/dev/null 2>&1 &
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+
+addons:
+  chrome: stable
+#   sauce_connect:
+#     username: "xolanimxoxozi"
+#     access_key: "xolani1991"
+      sauce_connect: true
+        env:
+          global:
+            - secure: 3bd6fd59-45ea-4b29-9c9c-6c5b0710caae
+before_script:
+  - python -m SimpleHTTPServer &
+  - sleep 2
+
+install:
+  - sudo apt-get install xvfb
+  - sudo apt-get update
+  - pip show setuptools
+
+  - pip install git+https://github.com/behave/behave
+  - pip install toolium
+  - pip install sauceclient
+
+  - wget -N http://chromedriver.storage.googleapis.com/2.36/chromedriver_linux64.zip -P ~/
+  - unzip ~/chromedriver_linux64.zip -d ~/
+  - sudo rm ~/chromedriver_linux64.zip
+  - sudo mv -f ~/chromedriver /usr/local/share/
+  - sudo chmod +x /usr/local/share/chromedriver
+  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+
+script:
+  - behave Web\ Testing
+#   - sleep 10
+#   - behave Second_web_demo
+#   - sleep 10
+#   - behave android_behave
