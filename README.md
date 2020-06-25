@@ -1,7 +1,6 @@
 # appium-python-bdd
-BDD tes with Behave and Appium
+BDD test with Behave and Appium
 
-
-To Run Android app
+__To Run Android app__
 
 behave android_behave
